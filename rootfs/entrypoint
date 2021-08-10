@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -eu
+
+for zone in $(flarectl --json zone list | jq -r '.[].Name'); do
+    flarectl zone export --zone="$zone" >"$zone.txt"
+done
+
+borgmatic -v"${VERBOSITY:-1}" --stats
