@@ -2,6 +2,8 @@
 
 set -eu
 
+borgmatic init -e repokey-blake2
+
 for zone in $(flarectl --json zone list | jq -r '.[].Name'); do
     flarectl zone export --zone="$zone" >"$zone.txt"
 done
