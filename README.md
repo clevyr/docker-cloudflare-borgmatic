@@ -1,5 +1,7 @@
 # docker-cloudflare-borgmatic
 
+[![Docker Build](https://github.com/clevyr/docker-cloudflare-borgmatic/actions/workflows/docker.yml/badge.svg)](https://github.com/clevyr/docker-cloudflare-borgmatic/actions/workflows/docker.yml)
+
 Backup every Cloudflare zone with Borg and Borgmatic.
 
 ## Pull Command
