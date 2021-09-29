@@ -9,6 +9,7 @@ RUN set -x \
         borgbackup \
         ca-certificates \
         jq \
+        openssh-client \
         py3-pip \
         python3 \
     && pip3 install --no-cache-dir borgmatic
