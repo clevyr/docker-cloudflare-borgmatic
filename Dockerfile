@@ -1,5 +1,5 @@
 FROM golang:alpine as flarectl
-RUN go install github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
+RUN go install -ldflags='-w -s' github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
 
 FROM alpine
 WORKDIR /data
