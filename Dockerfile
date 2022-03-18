@@ -13,7 +13,7 @@ RUN set -x \
     esac \
     && go install -ldflags='-w -s' github.com/cloudflare/cloudflare-go/cmd/flarectl@latest
 
-FROM alpine
+FROM alpine:3.15
 WORKDIR /data
 
 RUN set -x \
