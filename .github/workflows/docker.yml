@@ -1,10 +1,6 @@
 name: Docker Build
 
-on:
-  schedule:
-    - cron: "0 7 * * 1"
-  push:
-    branches: master
+on: push
 
 jobs:
   build:
@@ -37,7 +33,7 @@ jobs:
           images: |
             ghcr.io/clevyr/cloudflare-borgmatic
           tags: |
-            type=raw,priority=1000,value=latest,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+            type=raw,priority=1000,value=latest,enable=${{ github.ref_name == 'master' }}
             type=ref,event=branch
             type=sha
 
@@ -46,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           pull: true
-          push: true
+          push: ${{ github.ref_name == 'master' }}
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
