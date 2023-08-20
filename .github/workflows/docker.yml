@@ -33,7 +33,7 @@ jobs:
           images: |
             ghcr.io/clevyr/cloudflare-borgmatic
           tags: |
-            type=raw,priority=1000,value=latest,enable=${{ github.ref_name == 'master' }}
+            type=raw,priority=1000,value=latest,enable=${{ github.ref_name == 'main' }}
             type=ref,event=branch
             type=sha
 
@@ -42,7 +42,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           pull: true
-          push: ${{ github.ref_name == 'master' }}
+          push: ${{ github.ref_name == 'main' }}
           platforms: linux/amd64,linux/arm64/v8
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
