@@ -2,5 +2,12 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "local>clevyr/renovate-config"
+  ],
+  "regexManagers": [
+    {
+      "fileMatch": ["Dockerfile"],
+      "matchStrings": ["go install (.* )?(?<depName>.+?)@(?<currentValue>[0-9.a-zA-Z]+)"],
+      "datasourceTemplate": "go"
+    }
   ]
 }
