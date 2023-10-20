@@ -19,4 +19,5 @@ RUN apk add --no-cache jq
 COPY --from=flarectl /go/bin /usr/local/bin
 
 COPY rootfs/ /
+ENTRYPOINT ["sh"]
 CMD ["/entrypoint"]
