@@ -28,20 +28,15 @@ Your [Borgmatic](https://torsion.org/borgmatic/) config should be volume bound t
 
 Example Borgmatic config:
 ```yaml
-location:
-  repositories:
-    - /out/borg # Borg repo goes here
-  source_directories:
-    - /data
-storage:
-  archive_name_format: "cloudflare-{now:%Y-%m-%d-%H%M%S}"
-retention:
-  keep_hourly: 168
-  keep_daily: 31
-  keep_monthly: 24
-  keep_yearly: 2
-  prefix: "cloudflare-"
-consistency:
-  check_last: 3
-  prefix: "cloudflare-"
+repositories:
+  - path: /out/borg # Borg repo goes here
+    label: example
+source_directories:
+  - /data
+archive_name_format: "cloudflare-{now:%Y-%m-%d-%H%M%S}"
+keep_hourly: 168
+keep_daily: 31
+keep_monthly: 24
+keep_yearly: 2
+check_last: 3
 ```
