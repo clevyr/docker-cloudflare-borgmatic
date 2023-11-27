@@ -11,7 +11,7 @@ RUN set -x \
     esac \
     && go install -ldflags='-w -s' github.com/cloudflare/cloudflare-go/cmd/flarectl@v0.75.0
 
-FROM b3vis/borgmatic:1.8.3
+FROM b3vis/borgmatic:1.8.5
 WORKDIR /data
 
 RUN apk add --no-cache jq
