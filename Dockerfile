@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.21-alpine as flarectl
+FROM --platform=$BUILDPLATFORM golang:1.22-alpine as flarectl
 ARG TARGETPLATFORM
 # Set Golang build envs based on Docker platform string
 RUN set -x \
