@@ -1,8 +1,23 @@
 #syntax=docker/dockerfile:1.9
 
 FROM --platform=$BUILDPLATFORM golang:1.22-alpine as flarectl
-ARG TARGETPLATFORM
+WORKDIR /app
+
+ARG CF_REPO=cloudflare/cloudflare-go
+ARG CF_VERSION=v0.100.0
+RUN <<EOT
+  set -eux
+  apk add --no-cache git
+  git clone -q \
+    --config advice.detachedHead=false \
+    --branch "$CF_VERSION" \
+    --depth 1 \
+     "https://github.com/$CF_REPO.git" .
+  go mod download
+EOT
+
 # Set Golang build envs based on Docker platform string
+ARG TARGETPLATFORM
 RUN <<EOT
   set -eux
   case "$TARGETPLATFORM" in
@@ -12,7 +27,7 @@ RUN <<EOT
       'linux/arm64') export GOARCH=arm64 ;;
       *) echo "Unsupported target: $TARGETPLATFORM" && exit 1 ;;
   esac
-  go install -ldflags='-w -s' -trimpath github.com/cloudflare/cloudflare-go/cmd/flarectl@v0.100.0
+  go build -ldflags='-w -s' -trimpath ./cmd/flarectl
 EOT
 
 FROM b3vis/borgmatic:1.8.13
@@ -20,7 +35,7 @@ WORKDIR /data
 
 RUN apk add --no-cache jq
 
-COPY --from=flarectl /go/bin /usr/local/bin
+COPY --from=flarectl /app/flarectl /usr/local/bin
 
 COPY rootfs/ /
 ENTRYPOINT ["sh"]

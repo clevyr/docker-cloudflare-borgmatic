@@ -6,8 +6,10 @@
   "regexManagers": [
     {
       "fileMatch": ["Dockerfile"],
-      "matchStrings": ["go install (.* )?(?<depName>.+?)@(?<currentValue>[0-9.a-zA-Z]+)"],
-      "datasourceTemplate": "go"
+      "matchStrings": [
+        "ARG +CF_REPO=(?<depName>.+)\\nARG +CF_VERSION=(?<currentValue>.+)"
+      ],
+      "datasourceTemplate": "github-releases"
     }
   ]
 }
