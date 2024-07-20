@@ -4,7 +4,7 @@ FROM --platform=$BUILDPLATFORM golang:1.22-alpine AS flarectl
 WORKDIR /app
 
 ARG CF_REPO=cloudflare/cloudflare-go
-ARG CF_VERSION=v0.100.0
+ARG CF_VERSION=v2.4.0
 RUN <<EOT
   set -eux
   apk add --no-cache git
