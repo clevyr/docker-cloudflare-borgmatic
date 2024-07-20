@@ -9,7 +9,7 @@ RUN set -x \
         'linux/arm64') export GOARCH=arm64 ;; \
         *) echo "Unsupported target: $TARGETPLATFORM" && exit 1 ;; \
     esac \
-    && go install -ldflags='-w -s' -trimpath github.com/cloudflare/cloudflare-go/cmd/flarectl@v0.100.0
+    && go install -ldflags='-w -s' -trimpath github.com/cloudflare/cloudflare-go/cmd/flarectl@v2.4.0
 
 FROM b3vis/borgmatic:1.8.13
 WORKDIR /data
