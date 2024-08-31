@@ -30,7 +30,7 @@ RUN <<EOT
   go build -ldflags='-w -s' -trimpath ./cmd/flarectl
 EOT
 
-FROM b3vis/borgmatic:1.8.13
+FROM b3vis/borgmatic:1.8.14
 WORKDIR /data
 
 RUN apk add --no-cache jq
