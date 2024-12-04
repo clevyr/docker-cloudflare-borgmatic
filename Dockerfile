@@ -1,6 +1,6 @@
 #syntax=docker/dockerfile:1.10
 
-FROM --platform=$BUILDPLATFORM golang:1.23.2-alpine AS flarectl
+FROM --platform=$BUILDPLATFORM golang:1.23.4-alpine AS flarectl
 WORKDIR /app
 
 ARG CF_REPO=cloudflare/cloudflare-go
