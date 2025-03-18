@@ -2,7 +2,7 @@
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.6.1 AS xx
 
-FROM ghcr.io/gabe565/moreutils:0.2.3 AS moreutils
+FROM ghcr.io/gabe565/moreutils:0.5.2 AS moreutils
 
 FROM --platform=$BUILDPLATFORM golang:1.24.1-alpine AS flarectl
 WORKDIR /app
