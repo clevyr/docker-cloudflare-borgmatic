@@ -12,5 +12,12 @@
       ],
       "datasourceTemplate": "github-releases"
     }
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["cloudflare/cloudflare-go"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
   ]
 }
