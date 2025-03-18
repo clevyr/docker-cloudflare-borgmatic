@@ -3,8 +3,9 @@
   "extends": [
     "local>clevyr/renovate-config-public"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": ["Dockerfile"],
       "matchStrings": [
         "ARG +CF_REPO=(?<depName>.+)\\nARG +CF_VERSION=(?<currentValue>.+)"
