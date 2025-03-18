@@ -2,6 +2,8 @@
 
 FROM --platform=$BUILDPLATFORM tonistiigi/xx:1.6.1 AS xx
 
+FROM ghcr.io/gabe565/moreutils:0.5.2 AS moreutils
+
 FROM --platform=$BUILDPLATFORM golang:1.24.1-alpine AS flarectl
 WORKDIR /app
 
@@ -30,7 +32,7 @@ FROM b3vis/borgmatic:1.9.14
 WORKDIR /data
 
 RUN apk add --no-cache jq
-
+COPY --from=moreutils /usr/bin/moreutils /usr/bin/moreutils
 COPY --from=flarectl /app/flarectl /usr/local/bin
 
 COPY rootfs/ /
