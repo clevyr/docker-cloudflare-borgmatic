@@ -1,10 +1,22 @@
-#!/bin/sh
+#!/bin/bash
+set -eu
 
-set -eux
+log() {
+  printf "%s %s\n" "$(date '+%Y-%m-%d %H:%M:%S')" "$*" >&2;
+}
+export -f log
 
+log Init Borg repo
 borgmatic init -e repokey-blake2
 
+log Fetch zones
 zones="$(flarectl --json zone list | jq -r '.[].Name')"
-moreutils parallel sh -c 'flarectl zone export --zone="$0" > "$0.txt"' -- $zones
 
+log Export zones
+moreutils parallel bash -c '
+  log Export zone name="$0"
+  flarectl zone export --zone="$0" > "$0.txt"
+' -- $zones
+
+log Create Borg backup
 borgmatic -v"${VERBOSITY:-1}" --stats
