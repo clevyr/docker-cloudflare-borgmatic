@@ -4,8 +4,7 @@ set -eux
 
 borgmatic init -e repokey-blake2
 
-for zone in $(flarectl --json zone list | jq -r '.[].Name'); do
-    flarectl zone export --zone="$zone" >"$zone.txt"
-done
+zones="$(flarectl --json zone list | jq -r '.[].Name')"
+moreutils parallel sh -c 'flarectl zone export --zone="$0" > "$0.txt"' -- $zones
 
 borgmatic -v"${VERBOSITY:-1}" --stats
