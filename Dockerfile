@@ -26,7 +26,7 @@ RUN --mount=type=cache,target=/root/.cache \
   CGO_ENABLED=0 xx-go build -ldflags='-w -s' -trimpath ./cmd/flarectl
 
 
-FROM b3vis/borgmatic:1.8.14
+FROM b3vis/borgmatic:1.9.14
 WORKDIR /data
 
 RUN apk add --no-cache jq
