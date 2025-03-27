@@ -36,5 +36,5 @@ COPY --from=moreutils /usr/bin/moreutils /usr/bin/moreutils
 COPY --from=flarectl /app/flarectl /usr/local/bin
 
 COPY rootfs/ /
-ENTRYPOINT ["sh"]
+ENTRYPOINT ["bash"]
 CMD ["/entrypoint"]
