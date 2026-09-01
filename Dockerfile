@@ -10,7 +10,7 @@ WORKDIR /app
 COPY --from=xx / /
 
 ARG CF_REPO=cloudflare/cloudflare-go
-ARG CF_VERSION=v0.115.0
+ARG CF_VERSION=v0.118.0
 RUN <<EOT
   set -eux
   apk add --no-cache git
